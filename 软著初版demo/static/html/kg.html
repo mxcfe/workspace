@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+        <link rel="stylesheet" href="../css/kg.css">
+        <link rel="stylesheet" href="../css/materialize.min.css">
+    <script src="../js/d3.v3.min.js"></script>
+    <script src="../js/kg.js"></script>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+</head>
+<style>
+body {
+    overflow: hidden;
+    background-color:#f0f3f8;
+}
+
+</style>
+<body>
+
+    <div id="container" style="width: 100%"></div>
+
+</body>
+<script>
+
+    function render() {
+        var Mydata = ''
+        $.getJSON("../json/kg.json", function (data) {
+            Mydata = eval(data);
+            try {
+                $("svg").remove()
+                var config = {
+                    width: document.getElementById("container").clientWidth,
+                    height: document.getElementById("container").clientWidth
+                }
+                initKG(Mydata,config, "#container")
+            } catch (err) {
+                Materialize.toast('渲染存在异常', 2000)
+                console.info(err)
+            }
+        });
+
+    }
+
+    render();
+</script>

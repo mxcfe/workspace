@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>考研单词查询</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords"
+        content="Report Login Form Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <!-- //Meta tag Keywords -->
+    <!--/Style-CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <!--//Style-CSS -->
+
+
+    <title>login test</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="ajax方式">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+
+
+
+$(document).ready(function(){
+  $("#TextBox2").change(function(){
+document.getElementById('TextBox1').value=document.getElementById('TextBox2').value;
+          $("#jm").html("")
+            $("#ky").html("")
+          $.ajax({
+            //几个参数需要注意一下
+                type: "GET",//方法类
+                dataType:"text",//预型
+                data: $('#form1').serialize(),
+                url:"t.php" ,//url
+                success: function (str) {
+                // alert(str)
+                 var obj = eval('(' + str + ')');
+                 var s = ''
+                 var r =''
+                for (let a of obj.trs) {
+                   s=s+'\n'+ a.pos+' '+a.tran
+                   r=r+ a.pos+' '+a.tran+'<br>'
+                    }
+                              //alert(s)
+              
+                                    $("#ky").html(r);
+   
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
+          $.ajax({
+            //几个参数需要注意一下
+                type: "GET",//方法类
+                dataType:"text",//预型
+                data: $('#form1').serialize(),
+
+                url:"jm.php" ,//url
+                success: function (str) {
+                
+                 
+                                    $("#jm").html(str);
+                                     document.getElementById('TextBox2').placeholder = document.getElementById('TextBox2').value;
+                                     document.getElementById('TextBox2').value = "";
+ 
+
+                
+},
+                error : function() {
+                    alert("异常！");
+                }
+            });
+  });
+
+});
+
+
+
+
+
+
+
+
+
+        function qplay(){
+            
+            var word = document.getElementById('TextBox1').value;
+            var mp3= document.getElementById('mp3');
+mp3.src = "https://dict.youdao.com/dictvoice?audio="+word;
+
+    mp3.autoplay='autoplay';
+     mp3.play();
+
+        }    
+    </script>
+    
+    
+    
+    
+    
+    
+    <script>
+  
+
+</script>
+
+
+
+</head>
+
+
+
+
+
+
+<body>
+
+    <!-- form section start -->
+    <section class="w3l-hotair-form">
+        <h1></h1>
+        <div class="1container">
+            <!-- /form -->
+            <div class="workinghny-form-grid">
+                <div class="main-hotair">
+                    <div class="content-wthree">
+                        <h2>考研单词查询<br /><div style="color: red;font-size: 10px;">该网站旨在方便、快速查询单词，具体功能请查询有关软件</div></h2>                     
+                        
+                        
+   <form id="form1" onsubmit="return false" action="##" method="get">
+         <p><input name="word" type="text" id="TextBox2" tabindex="2" size="16" value="" placeholder="单词"/></p>
+
+       <button id='jm' class="btn" type="submit" onclick="play()">简明</button>
+
+   </form>
+  
+<input name="word" type="hidden" id="TextBox1" tabindex="2" size="16" value=""/>
+     <button id="ky"  class="btn" type="submit" onclick="play()">考研</button>
+
+<audio src="" id="mp3"></audio>
+                    </div>
+                    <div class="w3l_form align-self" >
+                        <div class="left_grid_info" >
+                            <img src="images/1.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </section>
+    <!-- //form section start -->
+</body>
+
+</html>
